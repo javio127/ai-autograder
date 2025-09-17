@@ -211,3 +211,113 @@ export function ShimmerSkeleton({ className = '', children }: SkeletonProps) {
 		</div>
 	)
 }
+
+export function TeacherDashboardSkeleton() {
+	return (
+		<div className="max-w-4xl mx-auto">
+			{/* Header */}
+			<div className="mb-8">
+				<Skeleton className="w-64 h-9 mb-2" /> {/* "Your Classrooms" title */}
+				<Skeleton className="w-96 h-5" /> {/* Description */}
+			</div>
+
+			{/* Create new classroom card */}
+			<div className="bg-white border border-slate-200 rounded-xl p-6 mb-6">
+				<Skeleton className="w-48 h-6 mb-3" /> {/* "Create New Classroom" */}
+				<div className="flex gap-3">
+					<Skeleton className="flex-1 h-12 rounded-lg" /> {/* Input field */}
+					<Skeleton className="w-32 h-12 rounded-lg" /> {/* Button */}
+				</div>
+			</div>
+
+			{/* Classrooms list */}
+			<div className="space-y-4">
+				{[1, 2, 3].map(i => (
+					<div key={i} className="bg-white border border-slate-200 rounded-xl p-6">
+						<div className="flex items-start justify-between mb-4">
+							<div className="flex-1">
+								<Skeleton className="w-48 h-6 mb-2" /> {/* Classroom name */}
+								<div className="flex items-center gap-4">
+									<Skeleton className="w-32 h-4" /> {/* Join code */}
+									<Skeleton className="w-24 h-4" /> {/* Assignment count */}
+								</div>
+							</div>
+							<div className="flex items-center gap-2">
+								<Skeleton className="w-8 h-8 rounded" /> {/* Copy button */}
+								<Skeleton className="w-20 h-8 rounded" /> {/* Assignments button */}
+								<Skeleton className="w-8 h-8 rounded" /> {/* Delete button */}
+							</div>
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+	)
+}
+
+export function StudentDashboardSkeleton() {
+	return (
+		<div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+			{/* Header */}
+			<div className="mb-8">
+				<Skeleton className="w-56 h-9 mb-2" /> {/* "My Math Assignments" */}
+				<Skeleton className="w-80 h-5" /> {/* Description */}
+			</div>
+
+			{/* Join Options - Two cards side by side */}
+			<div className="mb-8 grid gap-6 md:grid-cols-2">
+				{/* Join Classroom Card */}
+				<div className="p-6 bg-white border border-slate-200 rounded-xl">
+					<Skeleton className="w-32 h-6 mb-3" /> {/* "Join a Classroom" */}
+					<Skeleton className="w-64 h-4 mb-4" /> {/* Description */}
+					<div className="flex items-center gap-3">
+						<Skeleton className="flex-1 h-12 rounded-lg" /> {/* Input */}
+						<Skeleton className="w-16 h-12 rounded-lg" /> {/* Button */}
+					</div>
+				</div>
+
+				{/* Go to Assignment Card */}
+				<div className="p-6 bg-white border border-slate-200 rounded-xl">
+					<Skeleton className="w-36 h-6 mb-3" /> {/* "Go to Assignment" */}
+					<Skeleton className="w-52 h-4 mb-4" /> {/* Description */}
+					<div className="flex items-center gap-3">
+						<Skeleton className="flex-1 h-12 rounded-lg" /> {/* Input */}
+						<Skeleton className="w-12 h-12 rounded-lg" /> {/* Button */}
+					</div>
+				</div>
+			</div>
+
+			{/* My Classrooms */}
+			<div className="space-y-6">
+				<Skeleton className="w-32 h-7" /> {/* "My Classrooms" title */}
+				{[1, 2].map(i => (
+					<div key={i} className="bg-white border border-slate-200 rounded-xl p-6">
+						<div className="flex items-start justify-between mb-4">
+							<div className="flex-1">
+								<Skeleton className="w-48 h-6 mb-1" /> {/* Classroom name */}
+								<div className="flex items-center gap-4">
+									<Skeleton className="w-32 h-4" /> {/* Join code */}
+									<Skeleton className="w-24 h-4" /> {/* Assignment count */}
+								</div>
+							</div>
+							<Skeleton className="w-32 h-8 rounded-lg" /> {/* View Assignments button */}
+						</div>
+						
+						{/* Recent assignments */}
+						<div className="pt-4 border-t border-slate-200">
+							<Skeleton className="w-32 h-3 mb-3" /> {/* "Recent assignments" */}
+							<div className="space-y-2">
+								{[1, 2].map(j => (
+									<div key={j} className="flex items-center justify-between">
+										<Skeleton className="w-64 h-4" /> {/* Assignment title */}
+										<Skeleton className="w-12 h-4" /> {/* "Start" link */}
+									</div>
+								))}
+							</div>
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+	)
+}

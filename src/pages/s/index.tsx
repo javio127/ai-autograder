@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { getSupabaseBrowser } from '@/lib/supabaseClient'
 import RoleGuard from '@/components/RoleGuard'
-import { DashboardSkeleton } from '@/components/Skeleton'
+import { StudentDashboardSkeleton } from '@/components/Skeleton'
 import { LoadingButton } from '@/components/Loading'
 import Link from 'next/link'
 
@@ -189,7 +189,7 @@ export default function SDashboard() {
 	if (initialLoading) {
 		return (
 			<RoleGuard requiredRole="student">
-				<DashboardSkeleton />
+				<StudentDashboardSkeleton />
 			</RoleGuard>
 		)
 	}
