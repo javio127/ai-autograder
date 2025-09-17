@@ -48,11 +48,6 @@ export default function Report() {
 				setLoading(true)
 				const supabase = getSupabaseBrowser()
 
-				// Debug: Check current user
-				const { data: { user } } = await supabase.auth.getUser()
-				console.log('Current user ID:', user?.id)
-				console.log('Current user email:', user?.email)
-
 				// Load assignment info
 				const { data: assignmentData, error: assignmentError } = await supabase
 					.from('assignments')
@@ -67,9 +62,6 @@ export default function Report() {
 					`)
 					.eq('id', assignmentId)
 					.maybeSingle()
-
-				console.log('Assignment query result:', { assignmentData, assignmentError })
-				console.log('Looking for assignment ID:', assignmentId)
 
 				if (assignmentError) throw assignmentError
 				if (!assignmentData) throw new Error('Assignment not found')
@@ -121,13 +113,6 @@ export default function Report() {
 
 				if (submissionsError) throw submissionsError
 
-				console.log('Raw submissions data:', submissionsData)
-				console.log('Assignment ID being queried:', assignmentId)
-				console.log('Problem IDs for this assignment:', problemIds)
-				console.log('Student IDs from submissions:', studentIds)
-				console.log('Users data:', usersData)
-				console.log('Current user ID:', user?.id)
-
 				// Create lookup maps
 				const usersMap = new Map(usersData?.map(u => [u.id, u]) || [])
 				const problemsMap = new Map(assignmentProblems?.map(p => [p.id, p]) || [])
@@ -159,14 +144,7 @@ export default function Report() {
 					}
 				})
 
-				const finalSubmissions = Array.from(latestSubmissions.values())
-				console.log('Final processed submissions:', finalSubmissions)
-				
-				// Debug the result values
-				finalSubmissions.forEach(sub => {
-					console.log(`Submission result: "${sub.result}" (type: ${typeof sub.result})`)
-				})
-				setSubmissions(finalSubmissions)
+				setSubmissions(Array.from(latestSubmissions.values()))
 
 			} catch (err) {
 				console.error('Failed to load report:', err)
